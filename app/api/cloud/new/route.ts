@@ -10,7 +10,7 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-export const GET = async (req, res) => {
+export const GET = async (req: NextApiRequest) => {
   try {
     await connectToDB();
     const posts = await Post.find({});
@@ -24,10 +24,7 @@ export const GET = async (req, res) => {
 
 export const POST = async (req: NextApiRequest) => {
   try {
-    const { name, prompt, photo } = req.json;
-    console.log("name", name);
-    console.log("prompt", prompt);
-    console.log("photo", photo);
+    const { name, prompt, photo } = req.json();
 
     const photoUrl = await cloudinary.uploader.upload(photo);
 

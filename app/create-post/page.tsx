@@ -66,9 +66,8 @@ const CreatePost = () => {
           body: JSON.stringify({ ...form }),
         });
 
-        console.log("form in handleSubmit", form);
+        // const res = await response.json();
 
-        await response.json();
         alert("Success");
         router.push("/");
       } catch (err) {
