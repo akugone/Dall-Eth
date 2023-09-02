@@ -18,15 +18,12 @@ const Home = () => {
 
   const fetchPosts = async () => {
     try {
-      const response = await fetch(
-        "https://dalle-arbb.onrender.com/api/v1/post",
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await fetch("/api/cloud/new", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       if (response.ok) {
         const result = await response.json();
         setAllPosts(result.data.reverse());

@@ -1,8 +1,5 @@
-import express from "express";
 import { NextResponse } from "next/server";
 import { Configuration, OpenAIApi } from "openai";
-
-const router = express.Router();
 
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
@@ -27,5 +24,3 @@ export const POST = async (req, res) => {
     return NextResponse.json("Something went wrong", { status: 500 });
   }
 };
-
-export default router;

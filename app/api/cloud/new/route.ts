@@ -1,10 +1,7 @@
-import express from "express";
 import { v2 as cloudinary } from "cloudinary";
 import Post from "@/models/post";
 import { connectToDB } from "@/utils/database";
 import { NextResponse } from "next/server";
-
-const router = express.Router();
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -43,5 +40,3 @@ export const POST = async (req, res) => {
     });
   }
 };
-
-export default router;
