@@ -29,6 +29,8 @@ const CreatePost = () => {
     if (form.prompt) {
       try {
         setGeneratingImg(true);
+        console.log("form.prompt client side", form.prompt);
+
         const response = await fetch("/api/dalle/new", {
           method: "POST",
           headers: {

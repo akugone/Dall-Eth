@@ -18,7 +18,7 @@ const Home = () => {
 
   const fetchPosts = async () => {
     try {
-      const response = await fetch("/api/cloud/new", {
+      const response = await fetch("/api/cloud", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
