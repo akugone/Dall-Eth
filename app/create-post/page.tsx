@@ -14,8 +14,9 @@ const CreatePost = () => {
     photo: "",
   });
 
+  console.log("form in useState", form);
+
   const [generatingImg, setGeneratingImg] = useState(false);
-  const [loading, setLoading] = useState(false);
 
   const handleChange = e =>
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -29,7 +30,6 @@ const CreatePost = () => {
     if (form.prompt) {
       try {
         setGeneratingImg(true);
-        console.log("form.prompt client side", form.prompt);
 
         const response = await fetch("/api/dalle/new", {
           method: "POST",
@@ -57,7 +57,6 @@ const CreatePost = () => {
     e.preventDefault();
 
     if (form.prompt && form.photo) {
-      setLoading(true);
       try {
         const response = await fetch("/api/cloud/new", {
           method: "POST",
@@ -67,13 +66,13 @@ const CreatePost = () => {
           body: JSON.stringify({ ...form }),
         });
 
+        console.log("form in handleSubmit", form);
+
         await response.json();
         alert("Success");
         router.push("/");
       } catch (err) {
         alert(err);
-      } finally {
-        setLoading(false);
       }
     } else {
       alert("Please generate an image with proper details");
@@ -90,7 +89,7 @@ const CreatePost = () => {
         </p>
       </div>
 
-      <form className="mt-16 max-w-3xl" onSubmit={handleSubmit}>
+      <form className="mt-16 max-w-3xl">
         <div className="flex flex-col gap-5">
           <FormField
             labelName="Your Name"
@@ -144,6 +143,14 @@ const CreatePost = () => {
           >
             {generatingImg ? "Generating..." : "Generate"}
           </button>
+
+          <button
+            type="button"
+            onClick={handleSubmit}
+            className=" text-white bg-green-700 font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+          >
+            {generatingImg ? "Saving..." : "Save in the database"}
+          </button>
         </div>
 
         <div className="mt-10">
@@ -155,7 +162,7 @@ const CreatePost = () => {
             type="submit"
             className="mt-3 text-white bg-[#6469ff] font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center"
           >
-            {loading ? "Sharing..." : "Share with the Community"}
+            "Share with the Community"
           </button>
         </div>
       </form>

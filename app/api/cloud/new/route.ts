@@ -2,6 +2,7 @@ import { v2 as cloudinary } from "cloudinary";
 import Post from "@/models/post";
 import { connectToDB } from "@/utils/database";
 import { NextResponse } from "next/server";
+import { NextApiRequest } from "next";
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -21,9 +22,13 @@ export const GET = async (req, res) => {
   }
 };
 
-export const POST = async (req, res) => {
+export const POST = async (req: NextApiRequest) => {
   try {
-    const { name, prompt, photo } = req.body;
+    const { name, prompt, photo } = req.json;
+    console.log("name", name);
+    console.log("prompt", prompt);
+    console.log("photo", photo);
+
     const photoUrl = await cloudinary.uploader.upload(photo);
 
     await connectToDB();
