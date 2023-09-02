@@ -1,6 +1,8 @@
 import express from "express";
 import { v2 as cloudinary } from "cloudinary";
 import Post from "@/models/post";
+import { connectToDB } from "@/utils/database";
+import { NextResponse } from "next/server";
 
 const router = express.Router();
 
@@ -10,36 +12,36 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-router.route("/").get(async (req, res) => {
+export const GET = async (req, res) => {
   try {
+    await connectToDB();
     const posts = await Post.find({});
-    res.status(200).json({ success: true, data: posts });
+    return NextResponse.json({ success: true, data: posts }, { status: 200 });
   } catch (err) {
-    res.status(500).json({
-      success: false,
-      message: "Fetching posts failed, please try again",
+    return NextResponse.json("Fetching posts failed, please try again", {
+      status: 500,
     });
   }
-});
+};
 
-router.route("/").post(async (req, res) => {
+export const POST = async (req, res) => {
   try {
     const { name, prompt, photo } = req.body;
     const photoUrl = await cloudinary.uploader.upload(photo);
+
+    await connectToDB();
 
     const newPost = await Post.create({
       name,
       prompt,
       photo: photoUrl.url,
     });
-
-    res.status(200).json({ success: true, data: newPost });
+    return NextResponse.json({ success: true, data: newPost }, { status: 200 });
   } catch (err) {
-    res.status(500).json({
-      success: false,
-      message: "Unable to create a post, please try again",
+    return NextResponse.json("Unable to create a post, please try again", {
+      status: 500,
     });
   }
-});
+};
 
 export default router;

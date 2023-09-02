@@ -17,7 +17,7 @@ export const connectToDB = async () => {
     }
 
     const options = {
-      dbName: "share_tips",
+      dbName: "dalle-pics",
       useNewUrlParser: true,
       useUnifiedTopology: true,
     };
