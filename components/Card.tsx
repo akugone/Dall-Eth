@@ -32,7 +32,7 @@ const Card = ({ _id, name, prompt, photo }: CardProps) => (
           className="outline-none bg-transparent border-none"
         >
           <img
-            src={"/images/download.svg"}
+            src={"/images/download.png"}
             alt="download"
             className="w-6 h-6 object-contain invert"
           />

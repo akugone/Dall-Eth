@@ -15,6 +15,7 @@ const CreatePost = () => {
   });
 
   const [generatingImg, setGeneratingImg] = useState(false);
+  const [savingDatabase, setSavingDatabase] = useState(false);
 
   const handleChange = e =>
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -56,6 +57,7 @@ const CreatePost = () => {
 
     if (form.prompt && form.photo) {
       try {
+        setSavingDatabase(true);
         const response = await fetch("/api/cloud/new", {
           method: "POST",
           headers: {
@@ -67,9 +69,11 @@ const CreatePost = () => {
         await response.json();
 
         alert("Success");
-        // router.push("/");
+        router.push("/");
       } catch (err) {
         alert(err);
+      } finally {
+        setSavingDatabase(false);
       }
     } else {
       alert("Please generate an image with proper details");
@@ -146,7 +150,7 @@ const CreatePost = () => {
             onClick={handleSubmit}
             className=" text-white bg-green-700 font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center"
           >
-            {generatingImg ? "Saving..." : "Save in the database"}
+            {savingDatabase ? "Saving..." : "Save in the database"}
           </button>
         </div>
 
