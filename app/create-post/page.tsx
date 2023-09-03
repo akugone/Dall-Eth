@@ -14,8 +14,6 @@ const CreatePost = () => {
     photo: "",
   });
 
-  console.log("form in useState", form);
-
   const [generatingImg, setGeneratingImg] = useState(false);
 
   const handleChange = e =>
@@ -66,10 +64,10 @@ const CreatePost = () => {
           body: JSON.stringify({ ...form }),
         });
 
-        // const res = await response.json();
+        await response.json();
 
         alert("Success");
-        router.push("/");
+        // router.push("/");
       } catch (err) {
         alert(err);
       }

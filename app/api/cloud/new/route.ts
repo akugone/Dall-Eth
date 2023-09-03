@@ -24,11 +24,10 @@ export const GET = async (req: NextApiRequest) => {
 
 export const POST = async (req: NextApiRequest) => {
   try {
-    const { name, prompt, photo } = req.json();
+    await connectToDB();
+    const { name, prompt, photo } = await req.json();
 
     const photoUrl = await cloudinary.uploader.upload(photo);
-
-    await connectToDB();
 
     const newPost = await Post.create({
       name,
