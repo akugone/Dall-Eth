@@ -18,7 +18,7 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 
 ## Demo
 
-[Video](https://www.loom.com/share/2c8151b7ade54b958f21fe9c8b731de1?sid=d7c11b0f-0fb3-48df-af03-92f4a093614d){target="_blank"}
+[Video](https://www.loom.com/share/2c8151b7ade54b958f21fe9c8b731de1?sid=d7c11b0f-0fb3-48df-af03-92f4a093614d)
 
 
 ## WIP 
