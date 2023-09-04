@@ -43,7 +43,7 @@ const Home = () => {
         Write your prompts <br className="max-md:hidden" />
         <span className="orange_gradient text-center">And get your pics</span>
       </h1>
-      <p className="desc text-center">Ai pics generator</p>
+      <p className="desc text-center pb-4">Ai pics generator</p>
       <div className="grid lg:grid-cols-4 sm:grid-cols-3 xs:grid-cols-2 grid-cols-1 gap-3">
         <RenderCards data={allPosts} title="No Posts Yet" />
       </div>
