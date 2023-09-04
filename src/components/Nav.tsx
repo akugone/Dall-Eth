@@ -10,7 +10,7 @@ const Nav = () => {
       {/* Logo */}
       <Link href="/" className="flex gap-2 flex-center">
         <Image
-          src="/images/logo.svg"
+          src="/images/logo2.jpg"
           alt="Dall-Eth logo"
           width={90}
           height={90}
