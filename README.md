@@ -1,4 +1,4 @@
-Dall-Eth is your personal platform where you can generate AI pics with OpenAI, store them, and download them.
+YourDall-E is your personal platform where you can generate AI pics with OpenAI, store them, and download them.
 
 This is a [Next.js] 13 (https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
