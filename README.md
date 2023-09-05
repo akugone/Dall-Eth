@@ -7,6 +7,10 @@ This is a [Next.js] 13 (https://nextjs.org/) project bootstrapped with [`create-
 First, run the development server:
 
 ```bash
+npm i
+```
+
+```bash
 npm run dev
 ```
 
