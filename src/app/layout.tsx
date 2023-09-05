@@ -2,6 +2,8 @@ import "@/styles/globals.css";
 import Nav from "@/components/Nav";
 import { Inter } from "next/font/google";
 import SupabaseProvider from "@/providers/SupaBaseProviders";
+import UserProvider from "@/providers/UserProviders";
+import ModalProvider from "@/providers/ModalProvider";
 
 // font setup
 const inter = Inter({
@@ -19,13 +21,16 @@ const Rootlayout = ({ children }: { children: React.ReactNode }) => (
   <html lang="en" className={inter.className}>
     <body>
       <SupabaseProvider>
-        <div className="main">
-          <div className="gradient"></div>
-        </div>
-        <main className="app">
-          <Nav />
-          {children}
-        </main>
+        <UserProvider>
+          <ModalProvider />
+          <div className="main">
+            <div className="gradient"></div>
+          </div>
+          <main className="app">
+            <Nav />
+            {children}
+          </main>
+        </UserProvider>
       </SupabaseProvider>
     </body>
   </html>

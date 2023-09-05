@@ -5,8 +5,13 @@ import { useRouter } from "next/navigation";
 import { getRandomPrompt } from "@/utils";
 import FormField from "@/components/FormField";
 
+import { useUser } from "@/hooks/useUser";
+
 const CreatePost = () => {
   const router = useRouter();
+
+  const test = useUser();
+  console.log(test);
 
   const [form, setForm] = useState({
     name: "",

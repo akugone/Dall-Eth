@@ -15,6 +15,7 @@ type UserContextType = {
 };
 
 export const UserContext = createContext<UserContextType | undefined>(
+  // by default, the user is undefined
   undefined
 );
 
