@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import SupabaseProvider from "@/providers/SupaBaseProviders";
 import UserProvider from "@/providers/UserProviders";
 import ModalProvider from "@/providers/ModalProvider";
+import ToasterProvider from "@/providers/ToasterProvider";
 
 // font setup
 const inter = Inter({
@@ -20,6 +21,7 @@ export const metadata = {
 const Rootlayout = ({ children }: { children: React.ReactNode }) => (
   <html lang="en" className={inter.className}>
     <body>
+      <ToasterProvider />
       <SupabaseProvider>
         <UserProvider>
           <ModalProvider />

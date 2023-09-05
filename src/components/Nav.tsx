@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Button from "./Button";
 import { useRouter } from "next/navigation";
+import { toast } from "react-hot-toast";
 import { useUser } from "@/hooks/useUser";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import useAuthModal from "@/hooks/useAuthModal";
@@ -12,14 +13,20 @@ import useAuthModal from "@/hooks/useAuthModal";
 const Nav = () => {
   const router = useRouter();
   const authModal = useAuthModal();
-
   const supabaseClient = useSupabaseClient();
   const { user } = useUser();
 
   const handleLogout = async () => {
     const { error } = await supabaseClient.auth.signOut();
+    router.push("/");
 
     router.refresh();
+
+    if (error) {
+      toast.error(error.message);
+    } else {
+      toast.success("Logout successfully");
+    }
   };
   return (
     <nav className="flex-between w-full mb-16 pt-3 ">
@@ -33,12 +40,14 @@ const Nav = () => {
           className="object-contain"
         />
       </Link>
-      <Link
-        href="/create-post"
-        className="font-inter font-medium bg-[#6469ff] text-white px-4 py-2 rounded-md"
-      >
-        Create
-      </Link>
+      {user && (
+        <Link
+          href="/create-post"
+          className="font-inter font-medium bg-[#6469ff] text-white px-4 py-2 rounded-md"
+        >
+          Create
+        </Link>
+      )}
 
       <div className="flex justify-between items-center gap-x-4">
         {user ? (
